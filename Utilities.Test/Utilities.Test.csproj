@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Utilities\Zanella.Utilities.csproj" />
+    <ProjectReference Include="..\Zanella.Utilities\Zanella.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

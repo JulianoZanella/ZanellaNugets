@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Utilities.Models;
+using Zanella.Utilities.Models;
 
-namespace Utilities.Validation
+namespace Zanella.Utilities.Validation
 {
     public class DataAnnotationsValidation
     {
@@ -14,7 +14,7 @@ namespace Utilities.Validation
         /// <param name="validationResults"></param>
         /// <param name="messageWhenNull"></param>
         /// <returns></returns>
-        public bool ValidateObject(object item, out List<ValidationResult> validationResults, string messageWhenNull = "Invalid object")
+        public static bool ValidateObject(object? item, out List<ValidationResult> validationResults, string messageWhenNull = "Invalid object")
         {
             validationResults = new List<ValidationResult>();
 
@@ -33,7 +33,7 @@ namespace Utilities.Validation
         /// <param name="item"></param>
         /// <param name="messageWhenNull"></param>
         /// <returns>Object with result: Success and messages</returns>
-        public Result Validate(object item, string messageWhenNull = "Invalid object")
+        public static Result Validate(object? item, string messageWhenNull = "Invalid object")
         {
             var result = new Result
             {

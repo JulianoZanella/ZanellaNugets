@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace System
+namespace Zanella.Utilities.Extensions
 {
     public static class StringExtensions
     {

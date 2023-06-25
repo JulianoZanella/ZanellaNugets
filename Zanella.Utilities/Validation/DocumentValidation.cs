@@ -1,10 +1,20 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using Zanella.Utilities.Extensions;
 
-namespace Utilities.Validation
+namespace Zanella.Utilities.Validation
 {
     public static class DocumentValidation
     {
+        /// <summary>
+        /// Verify CPF is valid
+        /// </summary>
+        /// <param name="cpf"></param>
+        /// <returns></returns>
+        public static bool IsValidCPF(long? cpf)
+        {
+            return IsValidCPF(cpf?.ToString());
+        }
+
         /// <summary>
         /// Verify CPF is valid
         /// </summary>
@@ -14,8 +24,11 @@ namespace Utilities.Validation
         {
             cpf = cpf.ToOnlyNumbers();
 
-            if (cpf == null || cpf.Length != 11)
+            if (string.IsNullOrEmpty(cpf) || cpf.Length > 11)
                 return false;
+
+            if (cpf.Length < 11)
+                cpf = cpf.PadLeft(11, '0');
 
             var rgx = new Regex("\\A(\\d)\\1+\\Z");
             if (rgx.IsMatch(cpf))
@@ -35,12 +48,25 @@ namespace Utilities.Validation
         /// </summary>
         /// <param name="cnpj"></param>
         /// <returns></returns>
+        public static bool IsValidCPNJ(long? cnpj)
+        {
+            return IsValidCPNJ(cnpj?.ToString());
+        }
+
+        /// <summary>
+        /// Verify CNPJ is valid
+        /// </summary>
+        /// <param name="cnpj"></param>
+        /// <returns></returns>
         public static bool IsValidCPNJ(string? cnpj)
         {
             cnpj = cnpj.ToOnlyNumbers();
 
-            if (cnpj == null || cnpj.Length != 14)
+            if (string.IsNullOrEmpty(cnpj) || cnpj.Length > 14)
                 return false;
+
+            if (cnpj.Length < 14)
+                cnpj = cnpj.PadLeft(14, '0');
 
             var rgx = new Regex("\\A(\\d)\\1+\\Z");
             if (rgx.IsMatch(cnpj))
@@ -53,6 +79,16 @@ namespace Utilities.Validation
             var secondCalculatedDV = Module11(cnpj + firstDV.ToString(), 9);
 
             return firstDV == firstCalculatedDV && secondDV == secondCalculatedDV;
+        }
+
+        /// <summary>
+        /// Verify CPF or CNPJ is valid
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <returns></returns>
+        public static bool IsValidCPForCPNJ(long? doc)
+        {
+            return IsValidCPForCPNJ(doc?.ToString());
         }
 
         /// <summary>

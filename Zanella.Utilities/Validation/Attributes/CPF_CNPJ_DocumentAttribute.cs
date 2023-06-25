@@ -1,6 +1,6 @@
-﻿using Utilities.Validation;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace System.ComponentModel.DataAnnotations
+namespace Zanella.Utilities.Validation
 {
     /// <summary>
     /// Validate if document is valid
@@ -50,12 +50,12 @@ namespace System.ComponentModel.DataAnnotations
                 _ => false,
             };
         }
+    }
 
-        public enum EDocumentType
-        {
-            CPF_or_CNPJ,
-            CPF,
-            CNPJ,
-        }
+    public enum EDocumentType
+    {
+        CPF_or_CNPJ,
+        CPF,
+        CNPJ,
     }
 }

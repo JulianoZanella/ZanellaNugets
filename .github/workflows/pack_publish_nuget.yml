@@ -3,6 +3,8 @@ name: .NET + Pack + Push no NuGet
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   pack-push:

@@ -44,7 +44,7 @@ namespace Zanella.Api.Extensions
                     new TD
                     {
                         Field = modelState.Key,
-                        Errors = modelState.Value.Errors.Select(x => x.ErrorMessage),
+                        Errors = modelState.Value?.Errors?.Select(x => x.ErrorMessage) ?? new List<string>(),
                     });
 
                     returnedContentTypes ??= new MediaTypeCollection { "application/problem+json" };

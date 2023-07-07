@@ -1,6 +1,5 @@
 ﻿using ApiBase.SwaggerOptions;
 using Asp.Versioning.ApiExplorer;
-using Microsoft.Extensions.PlatformAbstractions;
 using Zanella.Api.Extensions;
 
 namespace ApiBase.Extensions
@@ -13,6 +12,9 @@ namespace ApiBase.Extensions
             services.AddEndpointsApiExplorer();
             services.AddSwaggerVersioning<ApiInfoProvider>();
             services.AddSwaggerDefaultResponses<DefaultResponses>();
+
+            var hostEnvironment = services.BuildServiceProvider().GetRequiredService<IHostEnvironment>();
+
             services.AddSwaggerGen(options =>
             {
                 options.AddVersionDefaultValues();
@@ -21,20 +23,22 @@ namespace ApiBase.Extensions
                 options.AddJWTSecurity("JWT Authorization Header - utilizado com Bearer Authentication.\r\n\r\n" +
                     "Digite 'Bearer' [espaço] e então seu token no campo abaixo.\r\n\r\n" +
                     "Exemplo (informar sem as aspas): 'Bearer 12345abcdef'");
-
-                // integrate xml comments
-                foreach (var item in GetXmlCommentsFilePaths())
+                if (hostEnvironment != null)
                 {
-                    options.IncludeXmlComments(item);
+                    // integrate xml comments
+                    foreach (var item in GetXmlCommentsFilePaths(hostEnvironment))
+                    {
+                        options.IncludeXmlComments(item);
+                    }
                 }
             });
 
             return services;
         }
 
-        private static IEnumerable<string> GetXmlCommentsFilePaths()
+        private static IEnumerable<string> GetXmlCommentsFilePaths(IHostEnvironment hostEnvironment)
         {
-            var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+            var basePath = hostEnvironment.ContentRootPath;
             return Directory.EnumerateFiles(basePath, "*.xml", SearchOption.AllDirectories);
         }
 

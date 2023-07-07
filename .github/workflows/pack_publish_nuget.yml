@@ -7,7 +7,7 @@ on:
 jobs:
   pack-push:
     env:
-      CAMINHO_PROJETO: ./Zanella.Utilities/Zanella.Utilities.csproj
+      CAMINHO_PROJETO: ./ZanellaNugets.sln
 
     runs-on: ubuntu-latest
     strategy:

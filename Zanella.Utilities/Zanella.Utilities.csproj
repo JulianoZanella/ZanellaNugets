@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionPrefix>2.0.1</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -13,7 +13,7 @@
     <Authors>Juliano Zanella</Authors>
     <Description>Some basic utilities</Description>
     <PackageTags>utilities;formatter;validation</PackageTags>
-    <RepositoryUrl>https://github.com/JulianoZanella/ZanellaNugets</RepositoryUrl>
+    <RepositoryUrl>https://github.com/JulianoZanella/ZanellaNugets/tree/master/Zanella.Utilities</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>

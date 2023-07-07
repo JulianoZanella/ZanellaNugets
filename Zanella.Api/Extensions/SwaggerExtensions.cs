@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Asp.Versioning.ApiExplorer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
@@ -23,6 +23,32 @@ namespace Zanella.Api.Extensions
             services.AddTransient<IApiInfoProvider, T>();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureVersioningOptions>();
             return services;
+        }
+
+        /// <summary>
+        /// Add service for default responses
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddSwaggerDefaultResponses<T>(this IServiceCollection services)
+           where T : class, IDefaultResponses
+        {
+            services.AddTransient<IDefaultResponses, T>();
+            return services;
+        }
+
+        /// <summary>
+        /// Add Default Responses
+        /// REQUIRED: <see cref="AddSwaggerDefaultResponses"/>
+        /// or services.AddTransient<IDefaultResponses, T>();
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static SwaggerGenOptions AddDefaultResponses(this SwaggerGenOptions options)
+        {
+            options.OperationFilter<DefaultResponsesOperationFilter>();
+            return options;
         }
 
         /// <summary>

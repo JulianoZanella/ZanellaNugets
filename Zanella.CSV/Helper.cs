@@ -131,7 +131,7 @@ namespace Zanella.CSV
         /// <summary>
         /// Write CSV content
         /// </summary>
-        /// <typeparam name="T">Object, if has <see cref="CSV_ColumnAttribute"/> Properties read only that values, else all read properties</typeparam>
+        /// <typeparam name="T">Object, if has <see cref="CSV_ColumnAttribute"/> Properties read only that values, else read all public properties</typeparam>
         /// <param name="data"></param>
         /// <param name="separator">default: ';'</param>
         /// <param name="filePath">Write file in disk</param>

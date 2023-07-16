@@ -9,7 +9,7 @@ namespace Zanella.CSV
     public class CSV_ColumnAttribute : Attribute
     {
         /// <summary>
-        /// Position in line
+        /// Position in line, column index
         /// </summary>
         public int Position { get; private set; }
 

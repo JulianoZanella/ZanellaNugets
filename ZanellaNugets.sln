@@ -5,8 +5,6 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FB89C0A4-AB4E-4638-9793-56CA08B1086A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Test", "Utilities.Test\Utilities.Test.csproj", "{601ECF13-00F1-4D67-BE3F-0DD5EAC62FCA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zanella.Utilities", "Zanella.Utilities\Zanella.Utilities.csproj", "{596012AF-DE1D-46FB-B091-D16EB2F596FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zanella.Api", "Zanella.Api\Zanella.Api.csproj", "{121A89FD-C8BB-4F9E-9E66-2118AA6361FD}"
@@ -15,9 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{F2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiBase", "Examples\ApiBase\ApiBase.csproj", "{34A4678F-5998-40F8-8C53-325633826231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zanella.DocumentHelper", "Zanella.DocumentHelper\Zanella.DocumentHelper.csproj", "{B93BAECF-CA19-47AD-90A8-EA45A0FA764B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zanella.DocumentHelper", "Zanella.DocumentHelper\Zanella.DocumentHelper.csproj", "{B93BAECF-CA19-47AD-90A8-EA45A0FA764B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentHelper.Test", "Tests\DocumentHelper.Test\DocumentHelper.Test.csproj", "{07BCA46C-B3DA-4A8C-A2D0-54C641B7AC30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentHelper.Test", "Tests\DocumentHelper.Test\DocumentHelper.Test.csproj", "{07BCA46C-B3DA-4A8C-A2D0-54C641B7AC30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities.Test", "Tests\Utilities.Test\Utilities.Test.csproj", "{1FCE2468-AE9C-4F38-BC72-7E58D2B11CBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{601ECF13-00F1-4D67-BE3F-0DD5EAC62FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{601ECF13-00F1-4D67-BE3F-0DD5EAC62FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{601ECF13-00F1-4D67-BE3F-0DD5EAC62FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{601ECF13-00F1-4D67-BE3F-0DD5EAC62FCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{596012AF-DE1D-46FB-B091-D16EB2F596FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{596012AF-DE1D-46FB-B091-D16EB2F596FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{596012AF-DE1D-46FB-B091-D16EB2F596FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,14 +45,18 @@ Global
 		{07BCA46C-B3DA-4A8C-A2D0-54C641B7AC30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07BCA46C-B3DA-4A8C-A2D0-54C641B7AC30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07BCA46C-B3DA-4A8C-A2D0-54C641B7AC30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FCE2468-AE9C-4F38-BC72-7E58D2B11CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCE2468-AE9C-4F38-BC72-7E58D2B11CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCE2468-AE9C-4F38-BC72-7E58D2B11CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FCE2468-AE9C-4F38-BC72-7E58D2B11CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{601ECF13-00F1-4D67-BE3F-0DD5EAC62FCA} = {FB89C0A4-AB4E-4638-9793-56CA08B1086A}
 		{34A4678F-5998-40F8-8C53-325633826231} = {F26427E3-1672-45FE-9989-9F1B10934E3F}
 		{07BCA46C-B3DA-4A8C-A2D0-54C641B7AC30} = {FB89C0A4-AB4E-4638-9793-56CA08B1086A}
+		{1FCE2468-AE9C-4F38-BC72-7E58D2B11CBD} = {FB89C0A4-AB4E-4638-9793-56CA08B1086A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AE723FF4-8446-4836-9D67-1C06EE6C47A2}

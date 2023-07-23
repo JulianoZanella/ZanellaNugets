@@ -6,17 +6,29 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Zanella.Api.Swagger
 {
+    /// <summary>
+    /// Versioning Options
+    /// </summary>
     public class ConfigureVersioningOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider _provider;
         private readonly IApiInfoProvider _apiInfoProvider;
 
+        /// <summary>
+        /// Versioning Options
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="apiInfoProvider"></param>
         public ConfigureVersioningOptions(IApiVersionDescriptionProvider provider, IApiInfoProvider apiInfoProvider)
         {
             _provider = provider;
             _apiInfoProvider = apiInfoProvider;
         }
 
+        /// <summary>
+        /// Configure
+        /// </summary>
+        /// <param name="options"></param>
         public void Configure(SwaggerGenOptions options)
         {
             foreach (var description in _provider.ApiVersionDescriptions)

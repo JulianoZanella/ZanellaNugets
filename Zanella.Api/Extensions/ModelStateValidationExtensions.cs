@@ -6,6 +6,9 @@ using Zanella.Api.Models;
 
 namespace Zanella.Api.Extensions
 {
+    /// <summary>
+    /// ModelState Validation Extensions
+    /// </summary>
     public static class ModelStateValidationExtensions
     {
         /// <summary>

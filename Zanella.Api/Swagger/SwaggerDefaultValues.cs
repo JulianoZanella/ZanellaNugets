@@ -5,6 +5,9 @@ using System.Text.Json;
 
 namespace Zanella.Api.Swagger
 {
+    /// <summary>
+    /// Default values for swagger
+    /// </summary>
     public class SwaggerDefaultValues : IOperationFilter
     {
         /// <summary>

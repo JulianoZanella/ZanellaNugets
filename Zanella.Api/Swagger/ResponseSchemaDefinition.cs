@@ -1,5 +1,8 @@
 ﻿namespace Zanella.Api.Swagger
 {
+    /// <summary>
+    /// Default response definitions
+    /// </summary>
     public class ResponseSchemaDefinition
     {
         /// <summary>

@@ -27,7 +27,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
         source-url: https://nuget.pkg.github.com/JulianoZanella/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Geração do package
       run: dotnet pack ${{ env.CAMINHO_PROJETO }} -p:GeneratePackageOnBuild=false -c Release -o out

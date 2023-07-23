@@ -35,6 +35,11 @@ namespace Zanella.Utilities.Validation
             };
         }
 
+        /// <summary>
+        /// Is Valid
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public override bool IsValid(object? value)
         {
             var cpfCnpj = value?.ToString();
@@ -52,10 +57,24 @@ namespace Zanella.Utilities.Validation
         }
     }
 
+    /// <summary>
+    /// Document Type
+    /// </summary>
     public enum EDocumentType
     {
+        /// <summary>
+        /// CPF or CNPJ
+        /// </summary>
         CPF_or_CNPJ,
+
+        /// <summary>
+        /// CPF
+        /// </summary>
         CPF,
+
+        /// <summary>
+        /// CNPJ
+        /// </summary>
         CNPJ,
     }
 }

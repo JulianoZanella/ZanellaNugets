@@ -2,6 +2,9 @@
 
 namespace Zanella.Utilities.Formatter
 {
+    /// <summary>
+    /// Masks Formatter
+    /// </summary>
     public static class DocumentFormatter
     {
         /// <summary>
@@ -31,10 +34,10 @@ namespace Zanella.Utilities.Formatter
             if (string.IsNullOrEmpty(value))
                 return defaultValue;
 
-            if (value.Length < 11)
+            if (value!.Length < 11)
                 value = value.PadLeft(11, '0');
 
-            return $"{value[..3]}.{value.Substring(3, 3)}.{value.Substring(6, 3)}-{value.Substring(9, 2)}";
+            return $"{value.Substring(0, 3)}.{value.Substring(3, 3)}.{value.Substring(6, 3)}-{value.Substring(9, 2)}";
         }
 
         /// <summary>
@@ -64,10 +67,10 @@ namespace Zanella.Utilities.Formatter
             if (string.IsNullOrEmpty(value))
                 return defaultValue;
 
-            if (value.Length < 14)
+            if (value!.Length < 14)
                 value = value.PadLeft(14, '0');
 
-            return $"{value[..2]}.{value.Substring(2, 3)}.{value.Substring(5, 3)}/{value.Substring(8, 4)}-{value.Substring(12, 2)}";
+            return $"{value.Substring(0, 2)}.{value.Substring(2, 3)}.{value.Substring(5, 3)}/{value.Substring(8, 4)}-{value.Substring(12, 2)}";
         }
 
         /// <summary>
@@ -100,7 +103,7 @@ namespace Zanella.Utilities.Formatter
             if (string.IsNullOrEmpty(value))
                 return defaultValue;
 
-            if (value.Length <= 11)
+            if (value!.Length <= 11)
                 return FormatCPF(value, defaultValue);
 
             return FormatCNPJ(value, defaultValue);

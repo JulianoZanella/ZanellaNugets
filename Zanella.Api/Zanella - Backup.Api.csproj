@@ -19,7 +19,6 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <SignAssembly>True</SignAssembly>
-    <PackageReleaseNotes>fix Documentation</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

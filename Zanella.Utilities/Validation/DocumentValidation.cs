@@ -3,6 +3,9 @@ using Zanella.Utilities.Extensions;
 
 namespace Zanella.Utilities.Validation
 {
+    /// <summary>
+    /// Document Validation
+    /// </summary>
     public static class DocumentValidation
     {
         /// <summary>
@@ -24,10 +27,10 @@ namespace Zanella.Utilities.Validation
         {
             cpf = cpf.ToOnlyNumbers();
 
-            if (string.IsNullOrEmpty(cpf) || cpf.Length > 11)
+            if (string.IsNullOrEmpty(cpf) || cpf?.Length > 11)
                 return false;
 
-            if (cpf.Length < 11)
+            if (cpf!.Length < 11)
                 cpf = cpf.PadLeft(11, '0');
 
             var rgx = new Regex("\\A(\\d)\\1+\\Z");
@@ -36,7 +39,7 @@ namespace Zanella.Utilities.Validation
 
             var firstDV = int.Parse(cpf.Substring(9, 1));
             var secondDV = int.Parse(cpf.Substring(10, 1));
-            cpf = cpf[..9];
+            cpf = cpf.Substring(0, 9);
             var firstCalculatedDV = Module11(cpf, 11);
             var sexondCalculatedDV = Module11(cpf + firstDV.ToString(), 11);
 
@@ -62,10 +65,10 @@ namespace Zanella.Utilities.Validation
         {
             cnpj = cnpj.ToOnlyNumbers();
 
-            if (string.IsNullOrEmpty(cnpj) || cnpj.Length > 14)
+            if (string.IsNullOrEmpty(cnpj) || cnpj?.Length > 14)
                 return false;
 
-            if (cnpj.Length < 14)
+            if (cnpj!.Length < 14)
                 cnpj = cnpj.PadLeft(14, '0');
 
             var rgx = new Regex("\\A(\\d)\\1+\\Z");
@@ -74,7 +77,7 @@ namespace Zanella.Utilities.Validation
 
             var firstDV = int.Parse(cnpj.Substring(12, 1));
             var secondDV = int.Parse(cnpj.Substring(13, 1));
-            cnpj = cnpj[..12];
+            cnpj = cnpj.Substring(0, 12);
             var firstCalculatedDV = Module11(cnpj, 9);
             var secondCalculatedDV = Module11(cnpj + firstDV.ToString(), 9);
 

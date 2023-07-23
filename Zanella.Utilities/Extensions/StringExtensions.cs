@@ -2,6 +2,9 @@
 
 namespace Zanella.Utilities.Extensions
 {
+    /// <summary>
+    /// String Extensions
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>

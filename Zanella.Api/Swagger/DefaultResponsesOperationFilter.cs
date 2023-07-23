@@ -6,15 +6,27 @@ using System.Reflection;
 
 namespace Zanella.Api.Swagger
 {
+    /// <summary>
+    /// Add default Responses
+    /// </summary>
     public class DefaultResponsesOperationFilter : IOperationFilter
     {
         private readonly IDefaultResponses _defaultResponses;
 
+        /// <summary>
+        /// Add default responses
+        /// </summary>
+        /// <param name="defaultResponses"></param>
         public DefaultResponsesOperationFilter(IDefaultResponses defaultResponses)
         {
             _defaultResponses = defaultResponses;
         }
 
+        /// <summary>
+        /// Applies default responses on documentation
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="context"></param>
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             foreach (var item in _defaultResponses.ResponseSchemaDefinitions)

@@ -1,5 +1,8 @@
 ﻿namespace Zanella.Api.Models
 {
+    /// <summary>
+    /// Validation error
+    /// </summary>
     public interface IProblemDetail
     {
         /// <summary>

@@ -9,6 +9,9 @@ using Zanella.Api.Swagger;
 
 namespace Zanella.Api.Extensions
 {
+    /// <summary>
+    /// Swagger Extensions
+    /// </summary>
     public static class SwaggerExtensions
     {
         /// <summary>
@@ -41,7 +44,7 @@ namespace Zanella.Api.Extensions
         /// <summary>
         /// Add Default Responses
         /// REQUIRED: <see cref="AddSwaggerDefaultResponses"/>
-        /// or services.AddTransient<IDefaultResponses, T>();
+        /// or services.AddTransient IDefaultResponses, T>();
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>

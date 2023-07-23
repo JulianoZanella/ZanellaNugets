@@ -5,6 +5,9 @@ using Zanella.Utilities.Models;
 
 namespace Zanella.Utilities.Validation
 {
+    /// <summary>
+    /// Validations for DataAnnotations
+    /// </summary>
     public class DataAnnotationsValidation
     {
         /// <summary>

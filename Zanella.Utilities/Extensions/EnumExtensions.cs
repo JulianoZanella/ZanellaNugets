@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Zanella.Utilities.Extensions
 {
+    /// <summary>
+    /// Enum Extensions
+    /// </summary>
     public static class EnumExtensions
     {
         /// <summary>

@@ -1,6 +1,6 @@
-﻿using Zanella.CSV;
+﻿using Zanella.DocumentHelper.CSV;
 
-namespace CSV.Tests.Models
+namespace DocumentHelper.Test.Models
 {
     public class CSVData
     {

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Zanella.CSV
+namespace Zanella.DocumentHelper.CSV
 {
+    /// <summary>
+    /// Read object for bind csv result
+    /// </summary>
     public interface ICSVObject
     {
         /// <summary>

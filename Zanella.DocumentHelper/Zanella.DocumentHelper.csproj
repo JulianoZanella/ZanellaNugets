@@ -8,14 +8,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <PackageId>$(AssemblyName)</PackageId>
-    <Title>CSV</Title>
+    <Title>DocumentHelper</Title>
     <Authors>Juliano Zanella</Authors>
-    <Description>CSV file reader and writer</Description>
-    <PackageTags>csv</PackageTags>
-    <RepositoryUrl>https://github.com/JulianoZanella/ZanellaNugets/tree/master/Zanella.CSV</RepositoryUrl>
+    <Description>Document Helpers</Description>
+    <PackageTags>csv;document</PackageTags>
+    <RepositoryUrl>https://github.com/JulianoZanella/ZanellaNugets/tree/master/Zanella.DocumentHelper</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>True</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,16 +1,16 @@
 # Zanella.CSV
 
-Contains utilities for CSV files
+Contains utilities for Documents
 
 ## Installation
 
-Use [nuget manager](https://www.nuget.org/packages/Zanella.CSV/) to install.
+Use [nuget manager](https://www.nuget.org/packages/Zanella.DocumentHelper/) to install.
 
 ## Usage
 
 ```csharp
 
-using Zanella.CSV;
+using Zanella.DocumentHelper.CSV;
 
 public class CSVData : ICSVObject
 {
@@ -37,6 +37,11 @@ var list = Helper.Read<CSVData>(csvContent);
 
 // Create CSV content from objects
 csvContent = Helper.Write(list);
+
+// Or use instance for same data objects:
+var csvHelper = new Helper<CSVDataRead>();
+var firstList = csvHelper.Read(firstContent);
+var secondList = csvHelper.Read(secondContent);
 
 ```
 

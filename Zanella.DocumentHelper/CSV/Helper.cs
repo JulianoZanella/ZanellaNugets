@@ -4,16 +4,19 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Zanella.CSV.Exceptions;
+using Zanella.DocumentHelper.Exceptions;
+using Zanella.DocumentHelper.Util;
 
-namespace Zanella.CSV
+namespace Zanella.DocumentHelper.CSV
 {
+    /// <summary>
+    /// CSV Helper
+    /// </summary>
     public class Helper
     {
         /// <summary>
         /// Bind CSV content to objects
         /// </summary>
-        /// <typeparam name="T">Data class</typeparam>
         /// <param name="content">CSV content</param>
         /// <param name="cultureInfo"></param>
         /// <param name="separators">List of separator for columns, default: ';'</param>
@@ -25,8 +28,37 @@ namespace Zanella.CSV
             , bool removeHeaderWithError = false
             ) where T : ICSVObject, new()
         {
-            var type = new T().GetType();
-            var mappedProperties = GetProperties(type, true);
+            return Read<T>(content, null, cultureInfo, separators, removeHeaderWithError);
+        }
+
+        /// <summary>
+        /// Write CSV content
+        /// </summary>
+        /// <typeparam name="T">Object, if has <see cref="CSV_ColumnAttribute"/> Properties read only that values, else read all public properties</typeparam>
+        /// <param name="data"></param>
+        /// <param name="separator">default: ';'</param>
+        /// <param name="filePath">Write file on disk</param>
+        /// <returns>The conten of file</returns>
+        public static string Write<T>(IEnumerable<T> data
+          , string separator = ";"
+          , string filePath = null
+        )
+        {
+            return Write(data, null, separator, filePath);
+        }
+
+        internal static IList<T> Read<T>(string content
+            , IEnumerable<MappedProperty> writeProperties
+            , IFormatProvider cultureInfo = null
+            , string[] separators = null
+            , bool removeHeaderWithError = false
+            ) where T : ICSVObject, new()
+        {
+            if (writeProperties == null || !writeProperties.Any())
+            {
+                var type = new T().GetType();
+                writeProperties = GetProperties(type, true);
+            }
 
             var list = new List<T>();
             if (string.IsNullOrWhiteSpace(content))
@@ -64,7 +96,7 @@ namespace Zanella.CSV
                     column = 0;
                     foreach (var valor in data)
                     {
-                        prop = mappedProperties.FirstOrDefault(x => x.Position == column);
+                        prop = writeProperties.FirstOrDefault(x => x.Position == column);
                         column++;
 
                         if (prop == null)
@@ -128,17 +160,10 @@ namespace Zanella.CSV
             return list;
         }
 
-        /// <summary>
-        /// Write CSV content
-        /// </summary>
-        /// <typeparam name="T">Object, if has <see cref="CSV_ColumnAttribute"/> Properties read only that values, else read all public properties</typeparam>
-        /// <param name="data"></param>
-        /// <param name="separator">default: ';'</param>
-        /// <param name="filePath">Write file in disk</param>
-        /// <returns>The conten of file</returns>
-        public static string Write<T>(IEnumerable<T> data
-            , string separator = ";"
-            , string filePath = null
+        internal static string Write<T>(IEnumerable<T> data
+          , IEnumerable<MappedProperty> readProperties
+          , string separator = ";"
+          , string filePath = null
         )
         {
             if (data == null || !data.Any())
@@ -146,8 +171,11 @@ namespace Zanella.CSV
                 return null;
             }
 
-            var type = data.First().GetType();
-            var mappedProperties = GetProperties(type, false).OrderBy(x => x.Position);
+            if (readProperties == null || !readProperties.Any())
+            {
+                var type = data.First().GetType();
+                readProperties = GetProperties(type, false).OrderBy(x => x.Position);
+            }
             var sb = new StringBuilder();
             string line;
 
@@ -158,7 +186,7 @@ namespace Zanella.CSV
 
             foreach (var item in data)
             {
-                line = GetLine(separator, mappedProperties.Select(x => x.Property.GetValue(item)).ToArray());
+                line = GetLine(separator, readProperties.Select(x => x.Property.GetValue(item)).ToArray());
                 sb.AppendLine(line);
                 if (writeFile)
                     sw.WriteLine(line);
@@ -212,7 +240,7 @@ namespace Zanella.CSV
             return string.Join(separator, data);
         }
 
-        private static List<MappedProperty> GetProperties(Type type, bool write)
+        internal static List<MappedProperty> GetProperties(Type type, bool write)
         {
             var properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
             if (write)
@@ -266,6 +294,59 @@ namespace Zanella.CSV
                 throw new InvalidOperationException("Duplicate position on CSV_ColumnAttribute");
 
             return mappedProperties;
+        }
+    }
+
+    /// <summary>
+    /// CSV Helper
+    /// </summary>
+    /// <typeparam name="T">Data Type</typeparam>
+    public class Helper<T> : Helper where T : ICSVObject, new()
+    {
+        private IEnumerable<MappedProperty> _writeProperties = new List<MappedProperty>();
+        private IEnumerable<MappedProperty> _readProperties = new List<MappedProperty>();
+
+        /// <summary>
+        /// Bind CSV content to objects
+        /// </summary>
+        /// <param name="content">CSV content</param>
+        /// <param name="cultureInfo"></param>
+        /// <param name="separators">List of separator for columns, default: ';'</param>
+        /// <param name="removeHeaderWithError">Remove first line if contains error</param>
+        /// <returns>List of objects</returns>
+        public IList<T> Read(string content
+           , IFormatProvider cultureInfo = null
+           , string[] separators = null
+           , bool removeHeaderWithError = false
+           )
+        {
+            if (_writeProperties == null || !_writeProperties.Any())
+            {
+                var type = new T().GetType();
+                _writeProperties = GetProperties(type, true);
+            }
+
+            return Read<T>(content, _writeProperties, cultureInfo, separators, removeHeaderWithError);
+        }
+
+        /// <summary>
+        /// Write CSV content
+        /// </summary>        
+        /// <param name="data"></param>
+        /// <param name="separator">default: ';'</param>
+        /// <param name="filePath">Write file on disk</param>
+        /// <returns>The conten of file</returns>
+        public string Write(IEnumerable<T> data
+            , string separator = ";"
+            , string filePath = null
+        )
+        {
+            if (_readProperties == null || !_readProperties.Any())
+            {
+                var type = new T().GetType();
+                _readProperties = GetProperties(type, false).OrderBy(x => x.Position);
+            }
+            return Write(data, _readProperties, separator, filePath);
         }
     }
 }

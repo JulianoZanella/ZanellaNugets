@@ -1,7 +1,8 @@
 ﻿using System;
 
-namespace Zanella.CSV
+namespace Zanella.DocumentHelper.CSV
 {
+
     /// <summary>
     /// Column Attribute
     /// </summary>

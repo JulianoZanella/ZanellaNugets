@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Zanella.CSV\Zanella.CSV.csproj" />
+    <ProjectReference Include="..\..\Zanella.DocumentHelper\Zanella.DocumentHelper.csproj" />
   </ItemGroup>
 
 </Project>

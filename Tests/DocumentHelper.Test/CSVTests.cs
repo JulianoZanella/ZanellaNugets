@@ -1,11 +1,11 @@
-using CSV.Tests.Models;
-using Zanella.CSV;
-using Zanella.CSV.Exceptions;
+using DocumentHelper.Test.Models;
+using Zanella.DocumentHelper.CSV;
+using Zanella.DocumentHelper.Exceptions;
 
-namespace CSV.Tests
+namespace DocumentHelper.Test
 {
     [TestClass]
-    public class ParserTests
+    public class CSVTests
     {
         [TestMethod]
         public void GenerateCSV()

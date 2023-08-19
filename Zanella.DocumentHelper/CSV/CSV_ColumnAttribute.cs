@@ -25,6 +25,11 @@ namespace Zanella.DocumentHelper.CSV
         public string Example { get; set; }
 
         /// <summary>
+        /// Column Header
+        /// </summary>
+        public string Header { get; set; }
+
+        /// <summary>
         /// Column Attribute
         /// </summary>
         /// <param name="position">Position in line: Start with 0, don't repeat</param>

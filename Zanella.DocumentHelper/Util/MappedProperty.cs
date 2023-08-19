@@ -11,5 +11,7 @@ namespace Zanella.DocumentHelper.Util
         internal bool IsRequired { get; set; }
 
         internal string Example { get; set; }
+
+        internal string Header { get; set; }
     }
 }

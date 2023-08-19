@@ -25,10 +25,10 @@ namespace DocumentHelper.Test
                 },
             };
 
-            var csvContent = Helper.Write(list);
+            var csvContent = Helper.Write(list, addHeaderColumn: true);
             Assert.IsNotNull(csvContent);
 
-            var data = Helper.Read<CSVDataRead>(csvContent);
+            var data = Helper.Read<CSVDataRead>(csvContent, removeHeaderWithError: true);
             Assert.IsTrue(data.FirstOrDefault()?.Name == list.FirstOrDefault()?.Name);
         }
 

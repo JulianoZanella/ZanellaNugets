@@ -38,13 +38,15 @@ namespace Zanella.DocumentHelper.CSV
         /// <param name="data"></param>
         /// <param name="separator">default: ';'</param>
         /// <param name="filePath">Write file on disk</param>
+        /// <param name="addHeaderColumn">Add coumns header based on Header prop on Attribute</param>
         /// <returns>The conten of file</returns>
         public static string Write<T>(IEnumerable<T> data
           , string separator = ";"
           , string filePath = null
+          , bool addHeaderColumn = false
         )
         {
-            return Write(data, null, separator, filePath);
+            return Write(data, null, separator, filePath, addHeaderColumn);
         }
 
         internal static IList<T> Read<T>(string content
@@ -164,6 +166,7 @@ namespace Zanella.DocumentHelper.CSV
           , IEnumerable<MappedProperty> readProperties
           , string separator = ";"
           , string filePath = null
+          , bool addHeaderColumn = true
         )
         {
             if (data == null || !data.Any())
@@ -183,6 +186,14 @@ namespace Zanella.DocumentHelper.CSV
             StreamWriter sw = null;
             if (writeFile)
                 sw = new StreamWriter(filePath);
+
+            if (addHeaderColumn)
+            {
+                line = GetLine(separator, readProperties.Select(x => x.Header).ToArray());
+                sb.AppendLine(line);
+                if (writeFile)
+                    sw.WriteLine(line);
+            }
 
             foreach (var item in data)
             {
@@ -265,6 +276,7 @@ namespace Zanella.DocumentHelper.CSV
                     Position = atributo.Position,
                     IsRequired = atributo.IsRequired,
                     Example = atributo.Example,
+                    Header = atributo.Header,
                 };
 
                 mappedProperties.Add(prop);
@@ -283,6 +295,7 @@ namespace Zanella.DocumentHelper.CSV
                         {
                             Property = property,
                             Position = position,
+                            Header = property.Name,
                         };
                         mappedProperties.Add(prop);
                         position++;
@@ -335,10 +348,12 @@ namespace Zanella.DocumentHelper.CSV
         /// <param name="data"></param>
         /// <param name="separator">default: ';'</param>
         /// <param name="filePath">Write file on disk</param>
+        /// <param name="addHeaderColumn">Add coumns header based on Header prop on Attribute</param>
         /// <returns>The conten of file</returns>
         public string Write(IEnumerable<T> data
             , string separator = ";"
             , string filePath = null
+            , bool addHeaderColumn = false
         )
         {
             if (_readProperties == null || !_readProperties.Any())
@@ -346,7 +361,7 @@ namespace Zanella.DocumentHelper.CSV
                 var type = new T().GetType();
                 _readProperties = GetProperties(type, false).OrderBy(x => x.Position);
             }
-            return Write(data, _readProperties, separator, filePath);
+            return Write(data, _readProperties, separator, filePath, addHeaderColumn);
         }
     }
 }

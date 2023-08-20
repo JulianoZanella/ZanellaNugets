@@ -34,10 +34,7 @@ namespace Zanella.Utilities.Formatter
             if (string.IsNullOrEmpty(value))
                 return defaultValue;
 
-            if (value!.Length < 11)
-                value = value.PadLeft(11, '0');
-
-            return $"{value.Substring(0, 3)}.{value.Substring(3, 3)}.{value.Substring(6, 3)}-{value.Substring(9, 2)}";
+            return BasicFormatter.Format(value, EFormat.CPF);
         }
 
         /// <summary>
@@ -67,10 +64,7 @@ namespace Zanella.Utilities.Formatter
             if (string.IsNullOrEmpty(value))
                 return defaultValue;
 
-            if (value!.Length < 14)
-                value = value.PadLeft(14, '0');
-
-            return $"{value.Substring(0, 2)}.{value.Substring(2, 3)}.{value.Substring(5, 3)}/{value.Substring(8, 4)}-{value.Substring(12, 2)}";
+            return BasicFormatter.Format(value, EFormat.CNPJ);
         }
 
         /// <summary>
@@ -103,10 +97,7 @@ namespace Zanella.Utilities.Formatter
             if (string.IsNullOrEmpty(value))
                 return defaultValue;
 
-            if (value!.Length <= 11)
-                return FormatCPF(value, defaultValue);
-
-            return FormatCNPJ(value, defaultValue);
+            return BasicFormatter.Format(value, EFormat.CPF_CNPJ);
         }
     }
 }

@@ -19,6 +19,11 @@ bool isValidCPNJ = DocumentValidation.IsValidCPNJ("00.000.000/0001-26");
 
 // Format
 string formatedCPF = DocumentFormatter.FormatCPF("12345678909");
+// or
+formatedCPF = BasicFormatter.Format("12345678909", EFormat.CPF);
+
+// Custom Format:
+string formated = BasicFormatter.Format("123456", "##-###.#");
 
 // Use Attribute
 [CPF_CNPJ_Document(EDocumentType.CPF)]
